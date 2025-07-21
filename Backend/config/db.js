@@ -1,13 +1,17 @@
 import mongoose from 'mongoose';
+import constant from './constant.js';
 
-const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect(process.env.MONGO_URI);
-    console.log("MongoDB Connected successfully");
-  } catch (error) {
-    console.error("Error: ${error.message}");
-    process.exit(1); // stop app if DB fails
-  }
-};
+const connectDb = async () => {
+  try{
+    await mongoose.connect(constant.MONGO_URI)
+    console.log('Database connected successfully');
 
-export default connectDB;
+    // adminSeeder();
+
+  }  catch (error) {
+    console.error('Database connection failed:', error);
+
+  }   
+}
+
+export default connectDb;
